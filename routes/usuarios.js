@@ -4,8 +4,8 @@ const { check } = require('express-validator');
 const { validarCampos } = require('../middlewares/validar-campos');
 const { validarJWT } = require('../middlewares/validar-jwt');
 
-
 const router = Router();
+
 
 // * Ruta para obtener todos los usuarios
 router.get( '/', validarJWT, getUsuarios );
