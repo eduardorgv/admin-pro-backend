@@ -100,10 +100,30 @@ const deleteMedico = async(req, res = response) => {
     }
 }
 
+const getMedicobById = async(req, res = response) => {
+    const id = req.params.id;
+    
+    try {
+        const medico = await Medico.findById(id).populate('usuario', 'nombre img').populate('hospital', 'nombre');
+        res.json({
+            ok: true,
+            medico
+        });
+    } catch (error) {
+        console.log(error);
+        res.json({
+            ok: false,
+            msg: 'Hable con el administrador'
+        });
+    }
+
+}
+
 
 module.exports = {
     getMedicos,
     postMedico,
     putMedico,
-    deleteMedico
+    deleteMedico,
+    getMedicobById
 }
